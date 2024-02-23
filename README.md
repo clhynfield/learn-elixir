@@ -154,3 +154,119 @@ iex(3)> "foo
 iex(4)> "foo\nbar"
 "foo\nbar"
 ```
+
+## Basic operations
+
+### Arithmetic operations
+
+```shell-session
+iex(1)> 2 + 2
+4
+iex(2)> 2 - 1
+1
+iex(3)> 2 * 5
+10
+iex(4)> 10 / 5
+2.0
+```
+
+Elixir has handy functions for integer division and getting the remainder:
+
+```shell-session
+iex(5)> div(10, 5)
+2
+iex(6)> rem(10, 3)
+1
+```
+
+### Boolean operations
+
+```shell-session
+iex(1)> true && true
+true
+iex(2)> false && false
+false
+iex(3)> true || false
+true
+```
+
+These operators also support any type:
+
+```shell-session
+iex(4)> 1 && true
+true
+iex(5)> 1 && 2
+2
+iex(6)> -20 || true
+-20
+```
+
+There are two more operators for working with booleans: `and` and `or` whose
+first operand must be a boolean:
+
+```shell-session
+iex(7)> true and true
+true
+iex(8)> true or false
+true
+iex(9)> 1 and true
+** (BadBooleanError) expected a boolean on left-side of "and", got: 1
+    iex:6: (file)
+```
+
+Note: Elixir’s `adn` and `or` actually map to `andalso` and `orelse` in Erlang.
+
+### Comparison operators
+
+```shell-session
+iex(1)> 1 == 1
+true
+iex(2)> 1 != 2
+true
+iex(3)> 1 < 2
+true
+iex(4)> 1 <= 2
+true
+iex(5)> 1 > 2
+false
+```
+
+For strict comparison, you can use `===` and `!==`:
+
+```shell-session
+iex(6)> 1 == 1.0
+true
+iex(7)> 1 === 1.0
+false
+iex(8)> 1 !== 1.0
+true
+```
+
+Any two types may be compared, and the comparison is based on their sort order:
+
+```shell-session
+iex(9)> 1 < :atom
+true
+iex(10)> 1 < "string"
+true
+iex(11)> :atom < "string"
+true
+```
+
+### String interpolation
+
+```shell-session
+iex(1)> name = "Sean"
+"Sean"
+iex(2)> "Hello, #{name}"
+"Hello, Sean"
+```
+
+### String concatenation
+
+```shell-session
+iex(3)> name = "Sean"
+"Sean"
+iex(4)> "Hello, " <> name
+"Hello, Sean"
+```
