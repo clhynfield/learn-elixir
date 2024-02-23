@@ -2,28 +2,35 @@ defmodule Greetings do
   @english_greeting "Hello, "
   @english_world "world"
   @english_punctuation "!"
+  @spanish_greeting "¡Hola, "
+  @french_greeting "Bonjour, "
 
   @spec hello :: String.t()
   def hello do
-    @english_greeting <> @english_world <> @english_punctuation
+    hello(name_with_default(""))
   end
 
   @spec hello(String.t()) :: String.t()
   def hello(name) do
-    @english_greeting <> name_with_default(name) <> @english_punctuation
+    hello(name, :english)
   end
 
   @spec hello(String.t(), String.t()) :: String.t()
   def hello(name, language) do
-    language_greeting(language) <> name_with_default(name) <> language_punctuation(language)
+    greeting(language) <> name_with_default(name) <> punctuation(language)
   end
 
-  @spec language_greeting(String.t()) :: String.t()
-  defp language_greeting(:spanish), do: "¡Hola, "
-  defp language_greeting(:english), do: @english_greeting
+  @spec greeting(String.t()) :: String.t()
+  def greeting(language) do
+    case language do
+      :spanish -> @spanish_greeting
+      :french -> @french_greeting
+      _ -> @english_greeting
+    end
+  end
 
-  @spec language_punctuation(String.t()) :: String.t()
-  def language_punctuation(language), do: "!"
+  @spec punctuation(String.t()) :: String.t()
+  defp punctuation(_language), do: @english_punctuation
 
   @spec name_with_default(String.t()) :: String.t()
   defp name_with_default(""), do: @english_world
