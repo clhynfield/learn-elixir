@@ -21,7 +21,7 @@ defmodule Greetings do
   end
 
   @spec greeting(String.t()) :: String.t()
-  def greeting(language) do
+  defp greeting(language) do
     case language do
       :spanish -> @spanish_greeting
       :french -> @french_greeting
