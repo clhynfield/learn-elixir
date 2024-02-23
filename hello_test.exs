@@ -12,4 +12,7 @@ defmodule GreetingsTest do
   test "greets the world by default" do
     assert Greetings.hello("") == "Hello, world!"
   end
+  test "greets people in Spanish" do
+    assert Greetings.hello("Jose") == "¡Hola, Jose!"
+  end
 end
